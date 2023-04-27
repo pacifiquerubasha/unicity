@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
 // creating functional component ans getting props from app.js and destucturing them
@@ -20,53 +19,47 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
   };
   return (
     <>
-      <Card style={{ marginTop: 100 }}>
-        <Card.Body>
-          <Form onSubmit={submitFormData}>
-            <Form.Group className="mb-3">
-              <Form.Label>Overall Height</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="number"
-                placeholder="Overall Height"
-                onChange={handleFormData("overall_height")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Label>Orientation</Form.Label>
-                <Form.Control
-                    style={{ border: error ? "2px solid red" : "" }}
-                    type="select"
-                    placeholder="Orientation"
-                    onChange={handleFormData("orientation")}
-                />
-                {error ? (
-                    <Form.Text style={{ color: "red" }}>
-                        This is a required field
-                    </Form.Text>
-                ) : (
-                    ""
-                )}
-            </Form.Group>
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Button variant="primary" onClick={prevStep}>
-                Previous
-              </Button>
-
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </div>
-          </Form>
-        </Card.Body>
-      </Card>
+        <div>
+            <form onSubmit={submitFormData}>
+                <div>
+                    <label>Overall Height</label>
+                    <input
+                        style={{ border: error ? "2px solid red" : "" }}
+                        type="number"
+                        placeholder="Overall Height"
+                        onChange={handleFormData("overall_height")}
+                    />
+                    {error ? (
+                        <p style={{ color: "red" }}>This is a required field</p>
+                    ) : (
+                        ""
+                    )}
+                </div>
+                <div>
+                    <label>Orientation</label>
+                    <select
+                        style={{ border: error ? "2px solid red" : "" }}
+                        type="select"
+                        onChange={handleFormData("orientation")}
+                    >
+                        <option selected value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    {error ? (
+                        <p style={{ color: "red" }}>This is a required field</p>
+                    ) : (
+                        ""
+                    )}
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-around" }}>
+                    <button onClick={prevStep}>Back</button>
+                    <button type="submit">Next</button>
+                    
+                </div>
+            </form>
+        </div>
     </>
   );
 };

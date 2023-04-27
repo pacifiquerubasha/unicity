@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form, Card, Button } from "react-bootstrap";
 import validator from "validator";
 
 // creating functional component ans getting props from app.js and destucturing them
@@ -20,53 +19,43 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
   };
   return (
     <>
-      <Card style={{ marginTop: 100 }}>
-        <Card.Body>
-          <Form onSubmit={submitFormData}>
-            <Form.Group className="mb-3">
-              <Form.Label>Glazing Area</Form.Label>
-              <Form.Control
-                style={{ border: error ? "2px solid red" : "" }}
-                type="number"
-                placeholder="Glazing Area"
-                onChange={handleFormData("glazing_area")}
-              />
-              {error ? (
-                <Form.Text style={{ color: "red" }}>
-                  This is a required field
-                </Form.Text>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Label>Glazing Area Distribution</Form.Label>
-                <Form.Control
-                    style={{ border: error ? "2px solid red" : "" }}
-                    type="number"
-                    placeholder="Glazing Area Distribution"
-                    onChange={handleFormData("glazing_area_distribution")}
-                />
-                {error ? (
-                    <Form.Text style={{ color: "red" }}>
-                        This is a required field
-                    </Form.Text>
-                ) : (
-                    ""
-                )}
-            </Form.Group>
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Button variant="primary" onClick={prevStep}>
-                Previous
-              </Button>
-
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
+      <div>
+        <form onSubmit={submitFormData}>
+          <div>
+            <label>Glazing Area</label>
+            <input
+              style={{ border: error ? "2px solid red" : "" }}
+              type="number"
+              placeholder="Glazing Area"
+              onChange={handleFormData("glazing_area")}
+            />
+            {error ? (
+              <p style={{ color: "red" }}>This is a required field</p>
+            ) : (
+              ""
+            )}
+          </div>
+          <div>
+            <label>Glazing Area Distribution</label>
+            <input
+              style={{ border: error ? "2px solid red" : "" }}
+              type="number"
+              placeholder="Glazing Area Distribution"
+              onChange={handleFormData("glazing_area_distribution")}
+            />
+            {error ? (
+              <p style={{ color: "red" }}>This is a required field</p>
+            ) : (
+              ""
+            )}
             </div>
-          </Form>
-        </Card.Body>
-      </Card>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <button onClick={prevStep}>Back</button>
+            <button type="submit">Next</button>
+          </div>
+        </form>
+      </div>
+    
     </>
   );
 };
