@@ -573,3 +573,8 @@ button:hover{
 .ReactModal__Content>div{
   margin: 1.25rem 0;
 }
+
+.viewer .titlebar{
+  display: none !important;
+  color: red;
+}

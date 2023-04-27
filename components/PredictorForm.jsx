@@ -89,7 +89,7 @@ function PredictorForm(props) {
                     </>
                 :
 
-                    <PredictionResults results={results} isLoading={isLoading}/>
+                    <PredictionResults results={results} isLoading={isLoading} formData={formData}/>
 
                 }
 

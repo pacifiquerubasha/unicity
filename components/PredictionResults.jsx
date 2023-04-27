@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import StrategiesModal from './StrategiesModal';
 
-function PredictionResults({isLoading, results}) {
+function PredictionResults({isLoading, results, formData}) {
 
     const [isBad, setIsBad] = useState(true);
 
@@ -38,6 +38,38 @@ function PredictionResults({isLoading, results}) {
     const [isOpen, setIsOpen] = useState(false);
     const closeModal = ()=>setIsOpen(false)
 
+    const possibleInsights = {
+        surface_area:["Surface Area is too large", "Reduce surface area to help help reduce both heat gain during hot weather and heat loss during cold weather"],
+        overall_height:["The building is too tall", "Implement a smaller overall height to improve natural lighting and ventilation. With lower ceilings, daylight can penetrate deeper into the building, reducing the need for artificial lighting."],
+        roof_area:["Roof Area is too large", "Reduce the roof area to help reduce heat gain and heat loss, which are major contributors to energy consumption in buildings."],
+        relative_compactness:["Relative compactness is too large", "Reduce the relative compactness to help improve natural ventilation, which can help reduce the need for mechanical ventilation and improve indoor air quality."]
+    }
+
+    const [insights, setInsights] = useState({});
+
+    const createRecommendations = ()=>{
+        setIsOpen(true)
+        let recom = {};
+        if(formData.relative_compactness > 0.75){
+            recom.relative_compactness = [`Relative compactness of ${formData.relative_compactness} is too large `, "Reduce the relative compactness to help improve natural ventilation, which can help reduce the need for mechanical ventilation and improve indoor air quality."]
+        }
+        if(formData.roof_area > 183.75){
+            recom.roof_area = [`Roof Area of ${formData.roof_area} is too large`, "Implement a smaller overall height to improve natural lighting and ventilation. With lower ceilings, daylight can penetrate deeper into the building, reducing the need for artificial lighting."]
+        }
+
+        if(formData.overall_height >  5.25){
+            recom.overall_height = [`Overall Height of ${formData.overall_height} is too large`, "Implement a smaller overall height to improve natural lighting and ventilation. With lower ceilings, daylight can penetrate deeper into the building, reducing the need for artificial lighting."]
+        }
+
+        if(formData.surface_area > 673.75){
+            recom.surface_area = [`Surface Area of ${formData.surface_area} is too large`, "Reduce the surface area to help reduce both heat gain during hot weather and heat loss during cold weather."]
+        }
+
+        setInsights(recom);
+
+    }    
+
+
     return (
         <>
 
@@ -59,7 +91,7 @@ function PredictionResults({isLoading, results}) {
                     <div className="comparison-left">
                         <h4>Your Consumption</h4>
                         <p>See How Your Building Uses Energy</p>
-                        <span className={`difference ${calculateDifference(results.cl_prediction, results.hl_prediction) > 1 && "bad"} `}>{calculateDifference(results.cl_prediction, results.hl_prediction)}</span>
+                        <span className={`difference ${calculateDifference(results.cl_prediction, results.hl_prediction) > 0 && "bad"} `}>{calculateDifference(results.cl_prediction, results.hl_prediction)}</span>
                        
                         <div className="comparison">
                             <span>Cooling</span>
@@ -105,9 +137,12 @@ function PredictionResults({isLoading, results}) {
                         <Bar dataKey="optimal" fill="#00F0FF" />
                     </BarChart>
 
-                    <button className='main__btn' onClick={()=>setIsOpen(true)}> Explore Strategies</button>
+                    {(results.cl_prediction > normal_cooling && results.hl_prediction > normal_heating) &&
+                        <button className='main__btn' onClick={createRecommendations}> Explore Strategies</button>
+                    }
 
-                    <StrategiesModal isOpen={isOpen} closeModal={closeModal}/>
+
+                    <StrategiesModal isOpen={isOpen} closeModal={closeModal} insights={insights}/>
 
             </div>
 
