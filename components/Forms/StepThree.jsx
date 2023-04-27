@@ -51,7 +51,7 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
             </div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <button onClick={prevStep}>Back</button>
-            <button type="submit">Next</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>
