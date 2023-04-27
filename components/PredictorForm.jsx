@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import StepOne from './Forms/StepOne';
+import StepTwo from './Forms/StepTwo';
+import StepThree from './Forms/StepThree';
 
 function PredictorForm(props) {
     // state for step
@@ -42,33 +45,27 @@ function PredictorForm(props) {
         console.log(formData);
     }
 
+    // handling form input data by taking onchange value and updating our previous form data state
+    const handleInputData = input => e => {
+        // input value from the form
+        const {value } = e.target;
+
+        //updating for data state taking previous state and then adding new value to create new object
+        setFormData(prevState => ({
+        ...prevState,
+        [input]: value
+    }));
+    }
+
     // switch case for step
     switch(step) {
         case 1:
             return (
                 <Container>
                     <Row>
-                        <Col md={{ span: 12, offset: 3 }} className="custom-margin">
-                            <h1 className="text-center">Step 1</h1>
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="compactness">Compactness</label>
-                                    <input type="text" className="form-control" id="compactness" name="compactness" value={formData.compactness} onChange={handleChange} />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="surface_area">Surface Area</label>
-                                    <input type="text" className="form-control" id="surface_area" name="surface_area" value={formData.surface_area} onChange={handleChange} />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="wall_area">Wall Area</label>
-                                    <input type="text" className="form-control" id="wall_area" name="wall_area" value={formData.wall_area} onChange={handleChange} />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="roof_area">Roof Area</label>
-                                    <input type="text" className="form-control" id="roof_area" name="roof_area" value={formData.roof_area} onChange={handleChange} />
-                                </div>  
-                            </form>
-                            <button onClick={nextStep}>Next</button>
+                        <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                            <h1>Step 1</h1>
+                            <StepOne nextStep={nextStep} handleFormData={handleInputData} values={formData} />
                         </Col>
                     </Row>
                 </Container>
@@ -78,20 +75,9 @@ function PredictorForm(props) {
             return (
                 <Container>
                     <Row>
-                        <Col md={{ span: 12, offset: 3 }} className="custom-margin">
-                            <h1 className="text-center">Step 2</h1>
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="overall_height">Overall Height</label>
-                                    <input type="text" className="form-control" id="overall_height" name="overall_height" value={formData.overall_height} onChange={handleChange} />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="orientation">Orientation</label>
-                                    <input type="text" className="form-control" id="orientation" name="orientation" value={formData.orientation} onChange={handleChange} />
-                                </div>
-                            </form>
-                            <button onClick={prevStep}>Previous</button>
-                            <button onClick={nextStep}>Next</button>
+                        <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                            <h1>Step 2</h1>
+                            <StepTwo nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} values={formData} />
                         </Col>
                     </Row>
                 </Container>
@@ -101,20 +87,9 @@ function PredictorForm(props) {
             return (
                 <Container>
                     <Row>
-                        <Col md={{ span: 12, offset: 3 }} className="custom-margin">
-                            <h1 className="text-center">Step 3</h1>
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="glazing_area">Glazing Area</label>
-                                    <input type="text" className="form-control" id="glazing_area" name="glazing_area" value={formData.glazing_area} onChange={handleChange} />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="glazing_area_distribution">Glazing Area Distribution</label>
-                                    <input type="text" className="form-control" id="glazing_area_distribution" name="glazing_area_distribution" value={formData.glazing_area_distribution} onChange={handleChange} />
-                                </div>
-                            </form>
-                            <button onClick={prevStep}>Previous</button>
-                            <button onClick={nextStep}>Next</button>
+                        <Col md={{ span: 6, offset: 3 }} className="custom-margin">
+                            <h1>Step 3</h1>
+                            <StepThree nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} values={formData} />
                         </Col>
                     </Row>
                 </Container>
