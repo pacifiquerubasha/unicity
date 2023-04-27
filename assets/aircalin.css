@@ -1,0 +1,12 @@
+
+
+/* GOALS */
+
+@media only screen and (max-width:1024px){
+    .ControlZone img {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+    }
+
+}
