@@ -5,8 +5,8 @@ function PredictionResults({isLoading, results}) {
 
     const [isBad, setIsBad] = useState(true);
 
-    const normal_cooling = 10;
-    const normal_heating = 20;
+    const normal_cooling = 12.5;
+    const normal_heating = 15.3;
 
     const getData = (results)=>{
 
@@ -59,11 +59,11 @@ function PredictionResults({isLoading, results}) {
                        
                         <div className="comparison">
                             <span>Cooling</span>
-                            <span className={` ${results.cl_prediction > normal_cooling && "bad"}`}>{results.cl_prediction}</span>
+                            <span className={` ${results.cl_prediction > normal_cooling && "bad"}`}>{results.cl_prediction.toFixed(2)}</span>
                         </div>
                         <div className="comparison">
                             <span>Heating</span>
-                            <span className={` ${results.hl_prediction > normal_heating && "bad"}`}>{results.hl_prediction}</span>
+                            <span className={` ${results.hl_prediction > normal_heating && "bad"}`}>{results.hl_prediction.toFixed(2)}</span>
                         </div>
 
                     </div>
