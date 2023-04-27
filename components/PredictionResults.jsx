@@ -105,7 +105,7 @@ function PredictionResults({isLoading, results}) {
                         <Bar dataKey="optimal" fill="#00F0FF" />
                     </BarChart>
 
-                    <button className='main__btn' onClick={()=>setIsOpen(true)}> Explore Strategies</button>
+                    <button className='main__btn result_cta' onClick={()=>setIsOpen(true)}> Explore Strategies</button>
 
                     <StrategiesModal isOpen={isOpen} closeModal={closeModal}/>
 

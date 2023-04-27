@@ -573,3 +573,7 @@ button:hover{
 .ReactModal__Content>div{
   margin: 1.25rem 0;
 }
+
+.result_cta {
+  margin-top: 2rem;
+}
