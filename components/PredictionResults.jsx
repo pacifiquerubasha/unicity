@@ -5,8 +5,8 @@ function PredictionResults({isLoading, results}) {
 
     const [isBad, setIsBad] = useState(true);
 
-    const normal_cooling = 10;
-    const normal_heating = 20;
+    const normal_cooling = 12.5;
+    const normal_heating = 15.3;
 
     const getData = (results)=>{
 

@@ -65,7 +65,7 @@ function PredictorForm(props) {
 
         setIsLoading(true)
 
-        fetch('https://a86d-105-235-144-130.eu.ngrok.io/api/predict', requestOptions)
+        fetch('http://localhost:5000/api/predict', requestOptions)
         .then(response => response.json())
         .then(data => {
             setResults(data)
