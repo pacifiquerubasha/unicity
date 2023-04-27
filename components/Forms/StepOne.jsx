@@ -7,7 +7,7 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
   const submitFormData = () => {
 
     if (
-      validator.isEmpty(values.compactness) ||
+      validator.isEmpty(values.relative_compactness) ||
       validator.isEmpty(values.surface_area) ||
       validator.isEmpty(values.wall_area) ||
       validator.isEmpty(values.roof_area)
@@ -26,8 +26,11 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
               style={{ border: error ? "2px solid red" : "" }}
               type="number"
               placeholder="Relative Compactness"
-              onChange={handleFormData("compactness")}
-              value={values["compactness"]}
+              onChange={handleFormData("relative_compactness")}
+              value={values["relative_compactness"]}
+              min={0.68}
+              max={0.98}
+              step={0.01}
             />
             {error ? (
               <p style={{ color: "red" }}>This is a required field</p>
@@ -43,7 +46,8 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
               placeholder="Surface Area"
               onChange={handleFormData("surface_area")}
               value={values["surface_area"]}
-
+              min={0}
+              step={1}
             />
             {error ? (
               <p style={{ color: "red" }}>This is a required field</p>
@@ -59,7 +63,8 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
               placeholder="Wall Area"
               onChange={handleFormData("wall_area")}
               value={values["wall_area"]}
-
+              min={0}
+              step={1}
             />
             {error ? (
               <p style={{ color: "red" }}>This is a required field</p>
@@ -75,7 +80,8 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
               placeholder="Roof Area"
               onChange={handleFormData("roof_area")}
               value={values["roof_area"]}
-
+              min={0}
+              step={1}
             />
             {error ? (
               <p style={{ color: "red" }}>This is a required field</p>

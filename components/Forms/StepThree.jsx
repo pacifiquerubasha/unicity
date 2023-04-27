@@ -15,7 +15,7 @@ const StepThree = ({handleFormData, prevStep, values, setIsPredictionResult, pre
     }
   };
 
-  
+
   return (
 
         <div className="form">
@@ -26,6 +26,9 @@ const StepThree = ({handleFormData, prevStep, values, setIsPredictionResult, pre
               type="number"
               placeholder="Glazing Area"
               onChange={handleFormData("glazing_area")}
+              min={0}
+              max={0.4}
+              step={0.1}
             />
             {error ? (
               <p style={{ color: "red" }}>This is a required field</p>
@@ -40,6 +43,9 @@ const StepThree = ({handleFormData, prevStep, values, setIsPredictionResult, pre
               type="number"
               placeholder="Glazing Area Distribution"
               onChange={handleFormData("glazing_area_distribution")}
+              min={0}
+              max={5}
+              step={0.5}
             />
             {error ? (
               <p style={{ color: "red" }}>This is a required field</p>

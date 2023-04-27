@@ -23,6 +23,8 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
                     type="number"
                     placeholder="Overall Height"
                     onChange={handleFormData("overall_height")}
+                    min={0}
+                    step={0.1}
                 />
                 {error ? (
                     <p style={{ color: "red" }}>This is a required field</p>

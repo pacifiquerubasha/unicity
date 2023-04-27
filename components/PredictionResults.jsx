@@ -59,11 +59,11 @@ function PredictionResults({isLoading, results}) {
                        
                         <div className="comparison">
                             <span>Cooling</span>
-                            <span className={` ${results.cl_prediction > normal_cooling && "bad"}`}>{results.cl_prediction}</span>
+                            <span className={` ${results.cl_prediction > normal_cooling && "bad"}`}>{results.cl_prediction.toFixed(2)}</span>
                         </div>
                         <div className="comparison">
                             <span>Heating</span>
-                            <span className={` ${results.hl_prediction > normal_heating && "bad"}`}>{results.hl_prediction}</span>
+                            <span className={` ${results.hl_prediction > normal_heating && "bad"}`}>{results.hl_prediction.toFixed(2)}</span>
                         </div>
 
                     </div>

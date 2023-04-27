@@ -11,7 +11,7 @@ function PredictorForm(props) {
     const [step, setStep] = useState(1);
 
     const [formData, setFormData] = useState({
-        compactness: "",
+        relative_compactness: "",
         surface_area: "",
         wall_area: "",
         roof_area: "",
@@ -21,16 +21,6 @@ function PredictorForm(props) {
         glazing_area_distribution: "" 
     })
 
-    // const [data, setData] = useState({
-    //         "relative_compactness": 0.74,
-    //         "surface_area": 686.0,
-    //         "wall_area": 245.0,
-    //         "roof_area": 220.5,
-    //         "overall_height": 3.5,
-    //         "orientation": 2,
-    //         "glazing_area": 0.1,
-    //         "glazing_area_distribution": 3
-    // })
 
     const nextStep = () => {
         setStep(step + 1);
@@ -54,6 +44,7 @@ function PredictorForm(props) {
     }
 
     const handleInputData = input => e => {
+        
         setFormData(prevState => ({
         ...prevState,
         [input]: e.target.value
