@@ -204,6 +204,26 @@ function Main(props) {
 
         </section>
 
+        <section className='section4'>
+            <div className="container">
+                <div className="container-left">
+                    <h3>Hold On A Sec!<br/> We have More.</h3>
+                    <p>
+                        We are currently in the process of adding more features to our platform.
+                    </p>
+                </div>
+                <div className="container-right">
+
+                    <div class="sketchfab-embed-wrapper">
+                        <iframe title="Modern Studio Apartment" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/68864965414f487090d1f677adbb8029/embed"></iframe>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
         <section className='section-cta' data-aos="zoom-in" data-aos-duration="1000">
             <div className="container">
                 <h4>Ready to Optimize Your Energy Use?</h4>
@@ -215,6 +235,9 @@ function Main(props) {
                 <button onClick={()=>navigate("/predictor")}>Try It Now</button>
             </div>
         </section>
+
+
+    
     </main>
     );
 }

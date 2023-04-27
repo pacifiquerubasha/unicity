@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import StrategiesModal from './StrategiesModal';
 
 function PredictionResults({isLoading, results}) {
 
@@ -33,6 +34,9 @@ function PredictionResults({isLoading, results}) {
 
         return ((coolDiff + heatDiff)/2).toFixed(1)
     }
+
+    const [isOpen, setIsOpen] = useState(false);
+    const closeModal = ()=>setIsOpen(false)
 
     return (
         <>
@@ -101,7 +105,13 @@ function PredictionResults({isLoading, results}) {
                         <Bar dataKey="optimal" fill="#00F0FF" />
                     </BarChart>
 
+                    <button className='main__btn' onClick={()=>setIsOpen(true)}> Explore Strategies</button>
+
+                    <StrategiesModal isOpen={isOpen} closeModal={closeModal}/>
+
             </div>
+
+            
 
         }
         

@@ -44,7 +44,7 @@ function PredictorForm(props) {
     }
 
     const handleInputData = input => e => {
-        
+
         setFormData(prevState => ({
         ...prevState,
         [input]: e.target.value
