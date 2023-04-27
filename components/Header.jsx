@@ -1,33 +1,33 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header(props) {
-    
+    const navigate = useNavigate();
+
     return (
         <header>
-            <a href="/" class="logo"><span>C</span>yrrus</a>
+            <a href="/" className="logo"><span>C</span>yrrus</a>
 
             <nav>
                 <ul>
                     <li>
-                        <a href="">Services</a>
+                        <a href="">Problem</a>
                     </li>
                     <li>
-                        <a href="">About</a>
+                        <a href="">Solution</a>
                     </li>
                     <li>
-                        <a href="">Contact</a>
+                        <a href="">Steps</a>
                     </li>
                     <li>
-                        <a href="">Terms</a>
+                        <a onClick={()=>navigate("/predictor")}>Predictor</a>
                     </li>
-                    <li>
-                        <a href="">Privacy</a>
-                    </li>
+                
                 </ul>
-                <div class="socials">
-                    <a href=""><i class="fab fa-github"></i></a>
-                    <a href=""><i class="fab fa-twitter"></i></a>
-                    <a href=""><i class="fab fa-discord"></i></a>
+                <div className="socials">
+                    <a href=""><i className="fab fa-github"></i></a>
+                    <a href=""><i className="fab fa-twitter"></i></a>
+                    <a href=""><i className="fab fa-discord"></i></a>
     
                 </div>
             </nav>

@@ -1,26 +1,24 @@
 import React, { useState } from "react";
 import validator from "validator";
 
-// creating functional component ans getting props from app.js and destucturing them
-const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
-   //creating error state for validation
+const StepThree = ({handleFormData, prevStep, values, setIsPredictionResult, predict }) => {
+
   const [error, setError] = useState(false);
 
-    // after form submit validating the form data using validator
-  const submitFormData = (e) => {
-    e.preventDefault();
+  const submitFormData = () => {
 
-     // checking if value of first name and last name is empty show error else take to next step
     if (validator.isEmpty(values.glazing_area) || validator.isEmpty(values.glazing_area_distribution)) {
       setError(true);
     } else {
-      nextStep();
+      setIsPredictionResult(true);
+      predict();
     }
   };
+
+  
   return (
-    <>
-      <div>
-        <form onSubmit={submitFormData}>
+
+        <div className="form">
           <div>
             <label>Glazing Area</label>
             <input
@@ -49,14 +47,12 @@ const StepThree = ({ nextStep, handleFormData, prevStep, values }) => {
               ""
             )}
             </div>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <button onClick={prevStep}>Back</button>
-            <button type="submit">Next</button>
+          <div className="actions">
+            <button className="back" onClick={prevStep}>Back</button>
+            <button className="next" onClick={submitFormData}>EVALUATE</button>
           </div>
-        </form>
-      </div>
-    
-    </>
+        </div>
+   
   );
 };
 

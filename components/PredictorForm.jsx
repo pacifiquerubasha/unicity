@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 import StepOne from './Forms/StepOne';
 import StepTwo from './Forms/StepTwo';
 import StepThree from './Forms/StepThree';
+import PredictionResults from './PredictionResults';
+
+
 
 function PredictorForm(props) {
-    // state for step
     const [step, setStep] = useState(1);
 
-    //state for form data
     const [formData, setFormData] = useState({
         compactness: "",
         surface_area: "",
@@ -21,17 +21,26 @@ function PredictorForm(props) {
         glazing_area_distribution: "" 
     })
 
-    // function for going to next step by increasing step state by 1
+    // const [data, setData] = useState({
+    //         "relative_compactness": 0.74,
+    //         "surface_area": 686.0,
+    //         "wall_area": 245.0,
+    //         "roof_area": 220.5,
+    //         "overall_height": 3.5,
+    //         "orientation": 2,
+    //         "glazing_area": 0.1,
+    //         "glazing_area_distribution": 3
+    // })
+
     const nextStep = () => {
         setStep(step + 1);
+        console.log(formData);
     };
 
-    // function for going to previous step by decreasing step state by 1
     const prevStep = () => {
         setStep(step - 1);
     };
 
-    // handle change function for updating form data
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -39,69 +48,63 @@ function PredictorForm(props) {
         })
     }
 
-    // handle submit function for submitting form data
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
     }
 
-    // handling form input data by taking onchange value and updating our previous form data state
     const handleInputData = input => e => {
-        // input value from the form
-        const {value } = e.target;
-
-        //updating for data state taking previous state and then adding new value to create new object
         setFormData(prevState => ({
         ...prevState,
-        [input]: value
+        [input]: e.target.value
     }));
     }
 
-    // switch case for step
-    switch(step) {
-        case 1:
-            return (
-                <Container>
-                    <Row>
-                        <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-                            <h1>Step 1</h1>
-                            <StepOne nextStep={nextStep} handleFormData={handleInputData} values={formData} />
-                        </Col>
-                    </Row>
-                </Container>
-            );
-            break;
-        case 2:
-            return (
-                <Container>
-                    <Row>
-                        <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-                            <h1>Step 2</h1>
-                            <StepTwo nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} values={formData} />
-                        </Col>
-                    </Row>
-                </Container>
-            );
-            break;
-        case 3:
-            return (
-                <Container>
-                    <Row>
-                        <Col md={{ span: 6, offset: 3 }} className="custom-margin">
-                            <h1>Step 3</h1>
-                            <StepThree nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} values={formData} />
-                        </Col>
-                    </Row>
-                </Container>
-            );
-            break;
-        default:
-            return (
-                <div>
-                    None
-                    </div>
-            );
+    const [isPredictionResult, setIsPredictionResult] = useState(false);
+
+    const [results, setResults] = useState({})
+    const [isLoading, setIsLoading] = useState(false);
+
+    const predict = async()=>{
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        };
+
+        setIsLoading(true)
+
+        fetch('https://a86d-105-235-144-130.eu.ngrok.io/api/predict', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            setResults(data)
+            setIsLoading(false)
+        })
+        .catch(err=>{
+            setIsLoading(false)
+        })
     }
+
+
+    return (    
+            <div className="unique-step">
+                {!isPredictionResult?
+                    <>
+                        <h1>Step {step}</h1>
+                        {step === 1 && <StepOne nextStep={nextStep} handleFormData={handleInputData} values={formData} />}
+                        {step === 2 && <StepTwo nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} values={formData} />}
+                        {step === 3 && <StepThree predict={predict} prevStep={prevStep} handleFormData={handleInputData} values={formData} setIsPredictionResult={setIsPredictionResult}/>}
+                    
+                    </>
+                :
+
+                    <PredictionResults results={results} isLoading={isLoading}/>
+
+                }
+
+
+            </div>
+    )
 
 }
 

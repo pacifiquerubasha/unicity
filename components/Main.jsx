@@ -1,12 +1,13 @@
 import React from 'react';
 import bulb from "../assets/bulb.jpg"
 import solution from "../assets/solution.jpg"
-
+import { useNavigate } from 'react-router-dom';
 
 function Main(props) {
+    const navigate = useNavigate();
     return (
         <main>
-        <div class="hero">
+        <div className="hero"  data-aos="zoom-in" data-aos-duration="1000">
             <h1>
                 <span>AI-Powered Energy Hero.</span>
                 Forecasting Efficiency.
@@ -15,17 +16,16 @@ function Main(props) {
                 Using Machine Learning to Predict Energy Consumption of Apartments and Promote
                  Sustainable Living through AI-Enabled Solutions
             </p>
-            <div class="cta">
-                <button class="main__btn">Try our App</button>
-                <button>More</button>
+            <div className="cta">
+                <button className="main__btn" onClick={()=>navigate("/predictor")}>Try our App</button>
             </div>
 
         </div>
 
-        <section class="section1">
-            <div class="container">
-                <div class="container-left">
-                    <div class="numbering">
+        <section className="section1" >
+            <div className="container">
+                <div className="container-left" data-aos="fade-left" data-aos-duration="1000">
+                    <div className="numbering">
                         <span>1</span>
                         <span>&mdash;</span>
                         <span>8</span>
@@ -38,7 +38,7 @@ function Main(props) {
                     <ul>
                         <li>
                             <div>
-                                <i class="fas fa-check"></i>
+                                <i className="fas fa-check"></i>
                             </div>
                             <div>
                                 <span>Rising energy costs</span>
@@ -49,7 +49,7 @@ function Main(props) {
                         </li>
                         <li>
                             <div>
-                                <i class="fas fa-check"></i>
+                                <i className="fas fa-check"></i>
                             </div>
                             <div>
                                 <span>Environmental impact</span>
@@ -60,7 +60,7 @@ function Main(props) {
                         </li>
                         <li>
                             <div>
-                                <i class="fas fa-check"></i>
+                                <i className="fas fa-check"></i>
                             </div>
                             <div>
                                 <span>Lack of awareness</span>
@@ -71,8 +71,8 @@ function Main(props) {
                         </li>
                     </ul>
                 </div>
-                <div class="container-right">
-                    {/* <div class="container-bg">
+                <div className="container-right" data-aos="fade-right" data-aos-duration="1000">
+                    {/* <div className="container-bg">
 
                     </div> */}
                     <img src={bulb} alt="" />
@@ -81,10 +81,10 @@ function Main(props) {
             </div>
         </section>
 
-        <section class="section2">
-            <div class="container">
-                <div class="container-left">
-                    <div class="numbering">
+        <section className="section2">
+            <div className="container">
+                <div className="container-left" data-aos="fade-left" data-aos-duration="1000">
+                    <div className="numbering">
                         <span>2</span>
                         <span>&mdash;</span>
                         <span>8</span>
@@ -97,7 +97,7 @@ function Main(props) {
 
                     <div className='solutions'>
                         <div className="solution">
-                                <i class="fas fa-ruler"></i>
+                                <i className="fas fa-ruler"></i>
                                 <div>
                                     <span>Shape and size recommendations</span>
                                     <p>
@@ -107,7 +107,7 @@ function Main(props) {
                                 </div>
                         </div>
                         <div className="solution">
-                                <i class="fas fa-bolt"></i>
+                                <i className="fas fa-bolt"></i>
                                 <div>
                                     <span>Smart building technology</span>
                                     <p>
@@ -122,8 +122,8 @@ function Main(props) {
 
                     
                 </div>
-                <div class="container-right">
-                    {/* <div class="container-bg">
+                <div className="container-right" data-aos="fade-right" data-aos-duration="1000">
+                    {/* <div className="container-bg">
 
                     </div> */}
                     <img src={solution} alt="" />
@@ -134,62 +134,62 @@ function Main(props) {
 
         <section className='section3'>
             <div className="container">
-                <div class="numbering">
+                <div className="numbering">
                         <span>3</span>
                         <span>&mdash;</span>
                         <span>8</span>
                 </div>
 
-                <div class="flex flex-col timeline mx-auto w-1/2 py-3">
-                    <div class="mb-3">
-                        <h3 class="text-center mb-1">How it works</h3>
-                        <p class="text-center">From Data Input to Personalized Energy-Saving Recommendations. Optimizing Sustainable Housing with AI: A Three-Step User Experience</p>
+                <div className="flex flex-col timeline mx-auto w-1/2 py-3">
+                    <div className="mb-3">
+                        <h3 className="text-center mb-1">How it works</h3>
+                        <p className="text-center">From Data Input to Personalized Energy-Saving Recommendations. Optimizing Sustainable Housing with AI: A Three-Step User Experience</p>
                     </div>
-                    <div class="flex gap-1">
-                        <div class="flex flex-col items-center timeline-left">
-                            <div class="round-icon flex items-center justify-center text-xl rounded-full bg-white ">
+                    <div className="flex gap-1">
+                        <div className="flex flex-col items-center timeline-left">
+                            <div className="round-icon flex items-center justify-center text-xl rounded-full bg-white ">
                                 <span>01</span>
                             </div>
                             
-                            <div class="h-auto border"></div>
+                            <div className="h-auto border"></div>
                         </div>
-                        <div>
-                            <div class="pt-1 text-xl timeline-element">Data Input and Analysis</div>
-                            <div class="mt-1 pb-2">
+                        <div data-aos="fade-left" data-aos-duration="1000">
+                            <div className="pt-1 text-xl timeline-element">Data Input and Analysis</div>
+                            <div className="mt-1 pb-2">
                             Our AI-powered system analyzes apartment shape and feature data
                              inputted by users to generate personalized energy consumption predictions.
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex gap-1">
-                        <div class="flex flex-col items-center timeline-left">
-                            <div class="round-icon flex items-center justify-center text-xl rounded-full bg-white ">
+                    <div className="flex gap-1">
+                        <div className="flex flex-col items-center timeline-left">
+                            <div className="round-icon flex items-center justify-center text-xl rounded-full bg-white ">
                                 <span>02</span>
                             </div>
                             
-                            <div class="h-auto border"></div>
+                            <div className="h-auto border"></div>
                         </div>
-                        <div>
-                            <div class="pt-1 text-xl timeline-element">Personalized Optimization Recommendations</div>
-                            <div class="mt-1 pb-2">
+                        <div data-aos="fade-left" data-aos-duration="1000">
+                            <div className="pt-1 text-xl timeline-element">Personalized Optimization Recommendations</div>
+                            <div className="mt-1 pb-2">
                                 Users receive customized recommendations on how to optimize energy use, 
                                 including eco-friendly habits and energy-efficient upgrades.
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex gap-1">
-                        <div class="flex flex-col items-center timeline-left">
-                            <div class="round-icon flex items-center justify-center text-xl rounded-full bg-white ">
+                    <div className="flex gap-1">
+                        <div className="flex flex-col items-center timeline-left">
+                            <div className="round-icon flex items-center justify-center text-xl rounded-full bg-white ">
                                 <span>03</span>
                             </div>
                             
-                            <div class="h-auto border"></div>
+                            <div className="h-auto border"></div>
                         </div>
-                        <div>
-                            <div class="pt-1 text-xl timeline-element">Ongoing Energy Monitoring and Optimization</div>
-                            <div class="mt-1 pb-2">
+                        <div data-aos="fade-left" data-aos-duration="1000">
+                            <div className="pt-1 text-xl timeline-element">Ongoing Energy Monitoring and Optimization</div>
+                            <div className="mt-1 pb-2">
                                 Our smart building technology continuously monitors and controls energy 
                                 usage, while also providing ongoing optimization recommendations based on data analysis.
                             </div>
@@ -204,7 +204,7 @@ function Main(props) {
 
         </section>
 
-        <section className='section-cta'>
+        <section className='section-cta' data-aos="zoom-in" data-aos-duration="1000">
             <div className="container">
                 <h4>Ready to Optimize Your Energy Use?</h4>
                 <p>
@@ -212,7 +212,7 @@ function Main(props) {
                 and live sustainably with our AI-powered sustainable housing app.
                 </p>
 
-                <button>Try It Now</button>
+                <button onClick={()=>navigate("/predictor")}>Try It Now</button>
             </div>
         </section>
     </main>
