@@ -3,7 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import Home from '../components/Home'
+import Home from '../pages/Home'
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
 
