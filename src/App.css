@@ -574,7 +574,6 @@ button:hover{
   margin: 1.25rem 0;
 }
 
-.viewer .titlebar{
-  display: none !important;
-  color: red;
+.result_cta {
+  margin-top: 2rem;
 }
